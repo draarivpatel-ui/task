@@ -35,6 +35,7 @@ type Taskfile struct {
 	Run          string
 	Interval     time.Duration
 	UseGitignore *bool
+	Coreutils    string
 }
 
 // Merge merges the second Taskfile into the first
@@ -99,6 +100,7 @@ func (tf *Taskfile) UnmarshalYAML(node *yaml.Node) error {
 			Run          string
 			Interval     time.Duration
 			UseGitignore *bool `yaml:"use_gitignore"`
+			Coreutils    string
 		}
 		if err := node.Decode(&taskfile); err != nil {
 			return errors.NewTaskfileDecodeError(err, node)
@@ -117,6 +119,7 @@ func (tf *Taskfile) UnmarshalYAML(node *yaml.Node) error {
 		tf.Run = taskfile.Run
 		tf.Interval = taskfile.Interval
 		tf.UseGitignore = taskfile.UseGitignore
+		tf.Coreutils = taskfile.Coreutils
 		if tf.Includes == nil {
 			tf.Includes = NewIncludes()
 		}

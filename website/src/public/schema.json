@@ -900,6 +900,12 @@
           "description": "Sets a different watch interval when using `--watch`, the default being 100 milliseconds. This string should be a valid Go duration: https://pkg.go.dev/time#ParseDuration.",
           "type": "string",
           "pattern": "^[0-9]+(?:m|s|ms)$"
+        },
+        "coreutils": {
+          "description": "How the core utilities run in Task's shell. `turtle` always runs charm.land/turtle's implementations, `system` prefers the ones in PATH and falls back to turtle, `auto` picks turtle on Windows and the system utilities elsewhere, and `off` skips the middleware entirely.",
+          "type": "string",
+          "enum": ["turtle", "system", "auto", "off"],
+          "default": "auto"
         }
       },
       "additionalProperties": false,

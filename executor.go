@@ -9,6 +9,7 @@ import (
 	"github.com/puzpuzpuz/xsync/v4"
 	"github.com/sajari/fuzzy"
 
+	"github.com/go-task/task/v3/internal/execext"
 	"github.com/go-task/task/v3/internal/fingerprint"
 	"github.com/go-task/task/v3/internal/logger"
 	"github.com/go-task/task/v3/internal/output"
@@ -74,6 +75,8 @@ type (
 		UserWorkingDir     string
 		EnableVersionCheck bool
 
+		coreutils execext.CoreutilsMode
+
 		fuzzyModel     *fuzzy.Model
 		fuzzyModelOnce sync.Once
 
@@ -132,6 +135,7 @@ func (e *Executor) fingerprinter() *fingerprint.Fingerprinter {
 		e.TempDir.Fingerprint,
 		e.Dry,
 		e.Logger,
+		fingerprint.WithCoreutils(e.coreutils),
 	)
 }
 

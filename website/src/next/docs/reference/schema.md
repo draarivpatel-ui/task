@@ -221,6 +221,22 @@ shopt: [globstar]
 use_gitignore: true
 ```
 
+### `coreutils`
+
+- **Type**: `string`
+- **Default**: `auto`
+- **Options**: `turtle`, `system`, `auto`, `off`
+- **Description**: How the core utilities run in Task's shell. `turtle` always
+  runs [charm.land/turtle](https://charm.land/turtle)'s implementations,
+  `system` prefers the ones in PATH and falls back to Turtle, `auto` picks
+  Turtle on Windows and the system utilities elsewhere, and `off` skips the
+  middleware entirely. The [`TASK_COREUTILS`](./environment.md#task-coreutils)
+  environment variable is a fallback for when this setting is absent.
+
+```yaml
+coreutils: turtle
+```
+
 ## Include
 
 Configuration for including external Taskfiles.
